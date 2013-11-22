@@ -2838,10 +2838,6 @@ static long qseecom_ioctl(struct file *file, unsigned cmd,
 		ret = qseecom_receive_req(data);
 		atomic_dec(&data->ioctl_count);
 		wake_up_all(&data->abort_wq);
-
-        
-		
-		
 		break;
 	}
 	case QSEECOM_IOCTL_SEND_RESP_REQ: {
