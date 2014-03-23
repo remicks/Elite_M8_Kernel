@@ -3132,6 +3132,13 @@ config MACH_M8_WL
         bool "MSM8974 M8_WL"
         help
           Support for HTC MSM8974 M8_WL
+
+config HAS_MACH_MEMUTILS
+	default n
+	bool "Motorola MSM memcpy enhancements"
+	help
+	Faster memcpy performance for Krait
+
 endif
 
 config PERFLOCK
