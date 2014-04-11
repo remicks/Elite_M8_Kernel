@@ -2116,7 +2116,7 @@ static void exfat_debug_kill_sb(struct super_block *sb)
 
 static struct file_system_type exfat_fs_type = {
 	.owner       = THIS_MODULE,
-	.name        = "exfat",
+	.name        = "texfat",
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,37)
 	.get_sb      = exfat_get_sb,
 #else
@@ -2152,3 +2152,8 @@ module_init(init_exfat_fs);
 module_exit(exit_exfat_fs);
 
 MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("exFAT Filesystem Driver");
+#ifdef MODULE_ALIAS_FS
+MODULE_ALIAS_FS("texfat");
+#endif
+
