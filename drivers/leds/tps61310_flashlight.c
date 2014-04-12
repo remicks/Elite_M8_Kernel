@@ -545,6 +545,9 @@ int tps61310_flashlight_control(int mode)
 	int err = 0;
 	int rc = 0;
 
+	if (this_tps61310 == NULL)
+		return -1;
+
 	cancel_delayed_work_sync(&tps61310_delayed_work);
 	if (rc)
 		FLT_INFO_LOG("tps61310_delayed_work is cancelled\n");
