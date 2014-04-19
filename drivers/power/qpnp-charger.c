@@ -4008,7 +4008,11 @@ static void update_ovp_uvp_state(int ov, int v, int uv)
 			pr_debug("UVP: 1 -> 0, USB_Valid: %d\n", v);
 		}
 	}
+<<<<<<< HEAD
 	pr_debug("ovp=%d, uvp=%d [%d,%d,%d]\n", ovp, uvp, ov, v, uv);
+=======
+	//pr_info("ovp=%d, uvp=%d [%d,%d,%d]\n", ovp, uvp, ov, v, uv);
+>>>>>>> 4d170f0... Reduce logspam
 }
 
 int pm8941_is_charger_ovp(int* result)
@@ -4223,7 +4227,7 @@ static void dump_reg(void)
 	if(BATT_LOG_BUF_LEN - len <= 1)
 		pr_warn("batt log length maybe out of buffer range!!!");
 
-	pr_info("%s\n", batt_log_buf);
+	//pr_info("%s\n", batt_log_buf);
 }
 
 static void dump_irq_rt_status(struct qpnp_chg_chip *chip)
@@ -4377,7 +4381,7 @@ static void dump_all(int more)
 	
 
 	
-	printk(KERN_INFO "[BATT][CHG] V=%d mV, I=%d mA, T=%d C, SoC=%d%%,id=%d mV,"
+	/*printk(KERN_INFO "[BATT][CHG] V=%d mV, I=%d mA, T=%d C, SoC=%d%%,id=%d mV,"
 			"H=%d,P=%d,CHG=%d,S=%d,FSM=%d,CHGR_STS=%X,BUCK_STS=%X,BATIF_STS=%X,"
 			"AC=%d,USB=%d,DC=%d,iusb_ma=%d,usb_target_ma=%d,pb_drop_usb_ma=%d,"
 			"OVP=%d,UVP=%d,TM=%d,usbin=%d,vchg=%d,"
@@ -4391,8 +4395,13 @@ static void dump_all(int more)
 			eoc_count, eoc_count_by_curr, is_ac_safety_timeout,
 			batt_charging_disabled, pwrsrc_disabled, is_batt_full, temp_fault,
 			the_chip->bat_is_warm, the_chip->bat_is_cool,
+<<<<<<< HEAD
 			flag_keep_charge_on, flag_pa_recharge, the_chip->charging_disabled, iusb_limit_enable,
 			vin_min, host_mode, hsml_target_ma);
+=======
+			flag_keep_charge_on, flag_pa_recharge, the_chip->charging_disabled,
+			vin_min, host_mode, hsml_target_ma);*/
+>>>>>>> 4d170f0... Reduce logspam
 	
 	dump_irq_rt_status(the_chip);
 	dump_reg();
@@ -5662,8 +5671,8 @@ qpnp_eoc_work(struct work_struct *work)
 		goto stop_eoc;
 	}
 
-	pr_info("chgr: 0x%x, bat_if: 0x%x, buck: 0x%x\n",
-		chg_sts, batt_sts, buck_sts);
+	/*pr_info("chgr: 0x%x, bat_if: 0x%x, buck: 0x%x\n",
+		chg_sts, batt_sts, buck_sts);*/
 
 	if (!qpnp_chg_is_usb_chg_plugged_in(chip) &&
 			!qpnp_chg_is_dc_chg_plugged_in(chip)) {
@@ -5685,8 +5694,8 @@ qpnp_eoc_work(struct work_struct *work)
 #endif
 		vbat_mv = get_prop_battery_voltage_now(chip) / 1000;
 
-		pr_info("ibat_ma = %d vbat_mv = %d term_current_ma = %d\n",
-				ibat_ma, vbat_mv, chip->term_current);
+		/*pr_info("ibat_ma = %d vbat_mv = %d term_current_ma = %d\n",
+				ibat_ma, vbat_mv, chip->term_current);*/
 
 #if !(defined(CONFIG_HTC_BATT_8960))
 		vbat_lower_than_vbatdet = !(chg_sts & VBAT_DET_LOW_IRQ);
