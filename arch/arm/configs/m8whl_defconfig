@@ -729,6 +729,10 @@ CONFIG_EXFAT_FS=m
 CONFIG_EXFAT_PATH="texfat_m8whl"
 CONFIG_EXFAT_VERSION="target/htc.d/htc-3014.6.24"
 
+#VMware
+# CONFIG_VMWARE_MVP is not set
+# CONFIG_VMWARE_MVP_DEBUG is not set
+
 CONFIG_HTC_RPM_CMD=y
 
 # SLUB: light weight debugging
