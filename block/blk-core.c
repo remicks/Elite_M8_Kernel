@@ -1234,11 +1234,6 @@ end_io:
 	bio_endio(bio, err);
 	return false;
 
-#ifdef CONFIG_MMC_MUST_PREVENT_WP_VIOLATION
-wp_end_io:
-	bio_endio(bio, err);
-	return 0;
-#endif
 }
 
 void generic_make_request(struct bio *bio)
