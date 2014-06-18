@@ -51,10 +51,10 @@ make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> com
 		cp "${mo}" $m
    done
 # Collect imgs
-#   ./dtb -o arch/arm/boot/dt.img -s 2048 -d "htc,project-id = <" -p ./scripts/dtc/ ./arch/arm/boot/
+   ./dtb -o arch/arm/boot/dt.img -s 2048 -d "htc,project-id = <" -p ./scripts/dtc/ ./arch/arm/boot/
    ./splitbootimg boot.img
    cp $k/arch/arm/boot/zImage $k
-#   cp $k/arch/arm/boot/dt.img $k
+   cp $k/arch/arm/boot/dt.img $k
    ./bootimg
    cp $k/boot.img out/$c/boot.img
 
@@ -63,7 +63,7 @@ make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> com
    rm -rf $k/boot.img-kernel
    rm -rf $k/boot.img-ramdisk.gz
    rm -rf $k/zImage
-#   rm -rf $k/dt.img
+   rm -rf $k/dt.img
    
 # Build Zip
  clear
