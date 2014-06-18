@@ -19,9 +19,9 @@
         cd $k
 # Setup output directory
     mkdir -p "out/$c"
+    mkdir -p "out/$c/system/lib/modules/"
     cp -R "$t/system" out/$c
     cp -R "$t/META-INF" out/$c
-    mkdir -p "out/$c/system/lib/modules/"
 #    mkdir -p "out/$c/system/lib/modules/pronto"
 
   m=$k/out/$c/system/lib/modules
@@ -51,10 +51,10 @@ make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> com
 		cp "${mo}" $m
    done
 # Collect imgs
-   ./dtb -o arch/arm/boot/dt.img -s 2048 -d "htc,project-id = <" -p ./scripts/dtc/ ./arch/arm/boot/
+#   ./dtb -o arch/arm/boot/dt.img -s 2048 -d "htc,project-id = <" -p ./scripts/dtc/ ./arch/arm/boot/
    ./splitbootimg boot.img
    cp $k/arch/arm/boot/zImage $k
-   cp $k/arch/arm/boot/dt.img $k
+#   cp $k/arch/arm/boot/dt.img $k
    ./bootimg
    cp $k/boot.img out/$c/boot.img
 
@@ -69,7 +69,7 @@ make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> com
  clear
    echo "Creating $z.zip"
      cd $k/out/$c/
-       7z a "$z.zip"
+       7z a -tzip -mx5 "$z.zip"
          mv $z.zip $k/out/$z.zip
 # cp $k/out/$z.zip $db/$z.zip
 #           rm -rf $k/out/$c
