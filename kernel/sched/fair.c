@@ -2103,27 +2103,25 @@ find_idlest_cpu(struct sched_group *group, struct task_struct *p, int this_cpu)
 	return idlest;
 }
 
-/*
- * Try and locate an idle CPU in the sched_domain.
- */
 static int select_idle_sibling(struct task_struct *p, int target)
 {
+	int cpu = smp_processor_id();
+	int prev_cpu = task_cpu(p);
 	struct sched_domain *sd;
 	struct sched_group *sg;
-	int i = task_cpu(p);
+	int i;
 
-	if (idle_cpu(target))
+	if (target == cpu && idle_cpu(cpu))
+		return cpu;
+
+	if (target == prev_cpu && idle_cpu(prev_cpu))
+		return prev_cpu;
+
+	if (!sysctl_sched_wake_to_idle &&
+	    !(current->flags & PF_WAKE_UP_IDLE) &&
+	    !(p->flags & PF_WAKE_UP_IDLE))
 		return target;
 
-	/*
-	 * If the prevous cpu is cache affine and idle, don't be stupid.
-	 */
-	if (i != target && cpus_share_cache(i, target) && idle_cpu(i))
-		return i;
-
-	/*
-	 * Otherwise, iterate the domains and find an elegible idle cpu.
-	 */
 	sd = rcu_dereference(per_cpu(sd_llc, target));
 	for_each_lower_domain(sd) {
 		sg = sd->groups;
@@ -2133,7 +2131,7 @@ static int select_idle_sibling(struct task_struct *p, int target)
 				goto next;
 
 			for_each_cpu(i, sched_group_cpus(sg)) {
-				if (i == target || !idle_cpu(i))
+				if (!idle_cpu(i))
 					goto next;
 			}
 
