@@ -35,6 +35,7 @@ int cpuidle_register_driver(struct cpuidle_driver *drv)
 		spin_unlock(&cpuidle_driver_lock);
 		return -EBUSY;
 	}
+	__cpuidle_register_driver(drv);
 	cpuidle_curr_driver = drv;
 	spin_unlock(&cpuidle_driver_lock);
 

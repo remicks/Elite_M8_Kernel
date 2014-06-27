@@ -81,10 +81,18 @@ int cpuidle_play_dead(void)
 	if (!drv)
 		return -ENODEV;
 
-	/* Find lowest-power state that supports long-term idle */
-	for (i = drv->state_count - 1; i >= CPUIDLE_DRIVER_STATE_START; i--)
-		if (drv->states[i].enter_dead)
-			return drv->states[i].enter_dead(dev, i);
+	
+	for (i = CPUIDLE_DRIVER_STATE_START; i < drv->state_count; i++) {
+		struct cpuidle_state *s = &drv->states[i];
+
+		if (s->power_usage < power_usage && s->enter_dead) {
+			power_usage = s->power_usage;
+			dead_state = i;
+		}
+	}
+
+	if (dead_state != -1)
+		return drv->states[dead_state].enter_dead(dev, dead_state);
 
 	return -ENODEV;
 }
