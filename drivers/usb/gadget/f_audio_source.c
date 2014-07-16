@@ -26,7 +26,11 @@
 #define SAMPLE_RATE 44100
 #define FRAMES_PER_MSEC (SAMPLE_RATE / 1000)
 
+<<<<<<< HEAD
 #define IN_EP_MAX_PACKET_SIZE	256
+=======
+#define IN_EP_MAX_PACKET_SIZE 256
+>>>>>>> a4c9d98... usb: gadget: f_audio_source: change max ISO packet size
 
 /* Number of requests to allocate */
 #define IN_EP_REQ_COUNT 4
