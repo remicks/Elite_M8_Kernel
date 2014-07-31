@@ -4016,11 +4016,7 @@ static void update_ovp_uvp_state(int ov, int v, int uv)
 			pr_debug("UVP: 1 -> 0, USB_Valid: %d\n", v);
 		}
 	}
-<<<<<<< HEAD
-	pr_debug("ovp=%d, uvp=%d [%d,%d,%d]\n", ovp, uvp, ov, v, uv);
-=======
-	//pr_info("ovp=%d, uvp=%d [%d,%d,%d]\n", ovp, uvp, ov, v, uv);
->>>>>>> 4d170f0... Reduce logspam
+	//pr_debug("ovp=%d, uvp=%d [%d,%d,%d]\n", ovp, uvp, ov, v, uv);
 }
 
 int pm8941_is_charger_ovp(int* result)
@@ -4403,13 +4399,10 @@ static void dump_all(int more)
 			eoc_count, eoc_count_by_curr, is_ac_safety_timeout,
 			batt_charging_disabled, pwrsrc_disabled, is_batt_full, temp_fault,
 			the_chip->bat_is_warm, the_chip->bat_is_cool,
-<<<<<<< HEAD
 			flag_keep_charge_on, flag_pa_recharge, the_chip->charging_disabled, iusb_limit_enable,
 			vin_min, host_mode, hsml_target_ma);
-=======
 			flag_keep_charge_on, flag_pa_recharge, the_chip->charging_disabled,
 			vin_min, host_mode, hsml_target_ma);*/
->>>>>>> 4d170f0... Reduce logspam
 	
 	dump_irq_rt_status(the_chip);
 	dump_reg();
