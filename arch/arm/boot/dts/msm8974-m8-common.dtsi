@@ -374,16 +374,14 @@
 	};
 };
 
-&pm8941_lsid1{
-	qcom,vibrator@c000 {
-		/* M8 customized property for msm-pm8941.dtsi */
-		qcom,qpnp-vib-timeout-ms = <15000>;
-		qcom,qpnp-vib-vtg-level-mV = <3100>;
-	};
-};
-
 &spmi_bus {
 	qcom,pm8941@1 {
+		qcom,vibrator@c000 {
+			/* M8 customized property for msm-pm8941.dtsi */
+			qcom,qpnp-vib-timeout-ms = <15000>;
+			qcom,qpnp-vib-vtg-level-mV = <3100>;
+		};
+
 		qcom,leds@d800 {
 			status = "disabled";
 			qcom,wled_0 {
@@ -564,7 +562,7 @@
 	qcom,min-fcc-learning-soc = <20>;
 	qcom,min-fcc-ocv-pc = <30>;
 	qcom,min-fcc-learning-samples = <5>;
-	qcom,fcc-resolution = <10>;
+	qcom,fcc-resolution = <13>;
 	qcom,shutdown-vol-criteria = <3400000>;
 	qcom,stored-batt-magic-num= <(-1)>;
 	qcom,stored-batt-soc= <(-1)>;
@@ -575,6 +573,7 @@
 	qcom,criteria-sw-est-ocv = <79200000>;
 	qcom,rconn-mohm-sw-est-ocv = <10>;
 	qcom,enable-batt-full-fake-ocv = <1>;
+	qcom,qb-mode-cc-criteria-uah = <10000>;
 	status = "ok";
 };
 
@@ -604,7 +603,9 @@
 	qcom,eoc-ibat-thre-ma = <50>;
 	qcom,is-embeded-batt = <1>;
 	qcom,regulate-vin-min-thr-mv = <4150>;
-	qcom,lower-vin-min = <4300>;
+	qcom,lower-vin-min = <4200>;
+	qcom,stored-pre-delta-vddmax-mv= <(-1)>;
+	qcom,stored-batt-magic-num= <(-1)>;
 
 	status = "ok";
 	qcom,charging-disabled;
