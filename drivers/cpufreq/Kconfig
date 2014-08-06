@@ -230,25 +230,6 @@ config CPU_FREQ_GOV_CONSERVATIVE
 
 	  If in doubt, say N.
 
-<<<<<<< HEAD
-=======
-config CPU_FREQ_GOV_INTELLIACTIVE
-	tristate "'intelliactive' cpufreq policy governor"
-	help
-	  'intelliactive' - This driver adds a dynamic cpufreq policy governor
-	  designed for latency-sensitive workloads.
-
-	  This governor attempts to reduce the latency of clock
-	  increases so that the system is more responsive to
-	  interactive workloads.
-
-	  To compile this driver as a module, choose M here: the
-	  module will be called cpufreq_interactive.
-
-	  For details, take a look at linux/Documentation/cpu-freq.
-
-	  If in doubt, say N.
-
 config CPU_FREQ_GOV_INTELLIDEMAND
         tristate "'intellidemand' cpufreq policy governor"
         help
@@ -259,7 +240,6 @@ config CPU_FREQ_GOV_INTELLIDEMAND
           do fast frequency switching (i.e, very low latency frequency
           transitions).
 
->>>>>>> 6fd8cbf... intellidemand: re-introduce intellidemand 5.5 cpu governor
 menu "x86 CPU frequency scaling drivers"
 depends on X86
 source "drivers/cpufreq/Kconfig.x86"
