@@ -33,7 +33,6 @@ uint32_t limited_max_freq = 2265600;
 static int update_cpu_max_freq(int cpu, uint32_t max_freq)
 {
 	int ret = 0;
-
 	ret = msm_cpufreq_set_freq_limits(cpu, MSM_CPUFREQ_NO_LIMIT, max_freq);
 	if (ret)
 		return ret;
