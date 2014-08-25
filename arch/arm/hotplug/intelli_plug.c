@@ -112,9 +112,9 @@ static unsigned int nr_run_thresholds_performance[] = {
 };
 
 static unsigned int nr_run_thresholds_conservative[] = {
-	(THREAD_CAPACITY * 875 * MULT_FACTOR) / DIV_FACTOR,
+	(THREAD_CAPACITY * 866 * MULT_FACTOR) / DIV_FACTOR,
+	(THREAD_CAPACITY * 1250 * MULT_FACTOR) / DIV_FACTOR,
 	(THREAD_CAPACITY * 1625 * MULT_FACTOR) / DIV_FACTOR,
-	(THREAD_CAPACITY * 2125 * MULT_FACTOR) / DIV_FACTOR,
 	UINT_MAX
 };
 
