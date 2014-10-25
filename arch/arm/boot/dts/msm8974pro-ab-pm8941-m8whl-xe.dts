@@ -73,10 +73,14 @@
 			qcom,default-state = "off";
 			qcom,id = <3>;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qcom,pwm_coefficient = <4>;
 =======
 			qcom,pwm_coefficient = <3>;
 >>>>>>> 3ab74d1... Revert "Revert "DTS: add new freqs to freq table sysfs""
+=======
+			qcom,pwm_coefficient = <4>;
+>>>>>>> fdde53c... build fixes
 		};
 
 		qcom,rgb_1 {
