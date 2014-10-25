@@ -68,7 +68,11 @@
 			qcom,max-current = <12>;
 			qcom,default-state = "off";
 			qcom,id = <3>;
+<<<<<<< HEAD
 			qcom,pwm_coefficient = <4>;
+=======
+			qcom,pwm_coefficient = <3>;
+>>>>>>> 3ab74d1... Revert "Revert "DTS: add new freqs to freq table sysfs""
 		};
 
 		qcom,rgb_1 {
