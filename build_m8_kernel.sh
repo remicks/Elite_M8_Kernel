@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to build your kernel
-  k=~/kernel/m8443
+  k=~/kernel/m8444
 # Directory for the any kernel updater
   t=$k/packages
 # Date to add to zip
@@ -27,7 +27,7 @@
   m=$k/out/$c/system/lib/modules
   z=$c-$today
 
-TOOLCHAIN=/home/forrest/kernel/linaro-4.9.1/bin/arm-cortex_a15-linux-gnueabihf-
+TOOLCHAIN=/home/forrest/kernel/linaro-4.9.2/bin/arm-cortex_a15-linux-gnueabihf-
 export ARCH=arm
 export SUBARCH=arm
 
@@ -39,7 +39,7 @@ find ./ -name '*~' | xargs rm
 # rm compile.log
 
 # make kernel
-make 'm8wl_defconfig'
+make 'm8_defconfig'
 make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> compile.log 2>&1 || exit -1
 
 # Grab modules & zImage
