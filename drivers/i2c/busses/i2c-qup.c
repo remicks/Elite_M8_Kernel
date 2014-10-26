@@ -1730,7 +1730,7 @@ static struct platform_driver qup_i2c_driver = {
 	},
 };
 
-static int __init
+int __init
 qup_i2c_init_driver(void)
 {
 	return platform_driver_register(&qup_i2c_driver);
