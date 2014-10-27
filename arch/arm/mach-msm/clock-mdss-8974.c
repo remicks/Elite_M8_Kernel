@@ -149,7 +149,7 @@
 
 #define PLL_POLL_MAX_READS	10
 #define PLL_POLL_TIMEOUT_US	50
-#define SEQ_M_MAX_COUNTER	7
+#define SEQ_M_MAX_COUNTER	4
 
 static long vco_cached_rate;
 static unsigned char *mdss_dsi_base;
@@ -1057,9 +1057,9 @@ static inline int dsi_pll_toggle_lock_detect_and_check_status(void)
 static void dsi_pll_software_reset(void)
 {
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_TEST_CFG, 0x01);
-	udelay(1);
+	udelay(1000);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_TEST_CFG, 0x00);
-	udelay(1);
+	udelay(1000);
 }
 
 static int dsi_pll_enable_seq_m(void)
@@ -1078,7 +1078,7 @@ static int dsi_pll_enable_seq_m(void)
 	udelay(600);
 
 	pll_locked = dsi_pll_toggle_lock_detect_and_check_status();
-	for (i = 0; (i < SEQ_M_MAX_COUNTER) && !pll_locked; i++) {
+	for (i = 0; (i < 4) && !pll_locked; i++) {
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_PWRGEN_CFG,
 			0x00);
 		udelay(50);
@@ -1135,7 +1135,7 @@ static int dsi_pll_enable_seq_f1(void)
 	dsi_pll_software_reset();
 
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_PWRGEN_CFG, 0x00);
-	udelay(50);
+	udelay(0);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x01);
 	udelay(200);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x05);
@@ -1208,16 +1208,15 @@ static int dsi_pll_enable_seq_8974(void)
 	dsi_pll_software_reset();
 
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x01);
-	udelay(1);
+	udelay(1000);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x05);
-	udelay(200);
+	udelay(1000);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x07);
-	udelay(500);
+	udelay(1000);
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x0f);
-	udelay(500);
+	udelay(1000);
 
-	for (i = 0; i < 2; i++) {
-		udelay(100);
+	for (i = 0; i < 3; i++) {
 		
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_LKDET_CFG2,
 			0x0c);
@@ -1243,17 +1242,17 @@ static int dsi_pll_enable_seq_8974(void)
 
 		dsi_pll_software_reset();
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x1);
-		udelay(1);
+		udelay(1000);
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x5);
-		udelay(200);
+		udelay(1000);
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x7);
-		udelay(250);
+		udelay(1000);
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x5);
-		udelay(200);
+		udelay(1000);
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0x7);
-		udelay(500);
+		udelay(1000);
 		DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_GLB_CFG, 0xf);
-		udelay(500);
+		udelay(2000);
 
 	}
 
@@ -1428,7 +1427,7 @@ static int vco_set_rate(struct clk *c, unsigned long rate)
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_SDM_CFG4, 0x00);
 
 	
-	udelay(1);
+	udelay(1000);
 
 	DSS_REG_W(mdss_dsi_base, DSI_0_PHY_PLL_UNIPHY_PLL_REFCLK_CFG,
 		(u32)refclk_cfg);
@@ -1822,7 +1821,7 @@ static int edp_vco_set_rate(struct clk *c, unsigned long vco_rate)
 	if (vco_rate == 810000000) {
 		DSS_REG_W(mdss_edp_base, 0x0c, 0x18);
 		
-		DSS_REG_W(mdss_edp_base, 0x64, 0x0d);
+		DSS_REG_W(mdss_edp_base, 0x64, 0x05);
 		
 		DSS_REG_W(mdss_edp_base, 0x00, 0x00);
 		
@@ -1844,7 +1843,7 @@ static int edp_vco_set_rate(struct clk *c, unsigned long vco_rate)
 		
 		DSS_REG_W(mdss_edp_base, 0x58, 0x00);
 		
-		DSS_REG_W(mdss_edp_base, 0x6c, 0x12);
+		DSS_REG_W(mdss_edp_base, 0x6c, 0x0a);
 		
 		DSS_REG_W(mdss_edp_base, 0x74, 0x01);
 		
@@ -1869,7 +1868,7 @@ static int edp_vco_set_rate(struct clk *c, unsigned long vco_rate)
 		DSS_REG_W(mdss_edp_base, 0x28, 0x00);
 	} else if (vco_rate == 1350000000) {
 		
-		DSS_REG_W(mdss_edp_base, 0x64, 0x0d);
+		DSS_REG_W(mdss_edp_base, 0x64, 0x05);
 		
 		DSS_REG_W(mdss_edp_base, 0x00, 0x01);
 		
@@ -1891,7 +1890,7 @@ static int edp_vco_set_rate(struct clk *c, unsigned long vco_rate)
 		
 		DSS_REG_W(mdss_edp_base, 0x58, 0x00);
 		
-		DSS_REG_W(mdss_edp_base, 0x6c, 0x12);
+		DSS_REG_W(mdss_edp_base, 0x6c, 0x0a);
 		
 		DSS_REG_W(mdss_edp_base, 0x74, 0x01);
 		
@@ -2163,7 +2162,7 @@ static unsigned long edp_mainlink_get_rate(struct clk *c)
 
 	pclk = clk_get_parent(c);
 
-	if (pclk && pclk->ops && pclk->ops->get_rate && mclk && mclk->data.div) {
+	if (pclk->ops->get_rate) {
 		rate = pclk->ops->get_rate(pclk);
 		rate /= mclk->data.div;
 	}
