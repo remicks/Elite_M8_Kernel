@@ -63,7 +63,7 @@ make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> com
    rm -rf $k/boot.img-kernel
    rm -rf $k/boot.img-ramdisk.gz
    rm -rf $k/zImage
-   rm -rf $k/dt.img
+#   rm -rf $k/dt.img
    rm -rf $k/arch/arm/boot/dt.img
    
 # Build Zip
