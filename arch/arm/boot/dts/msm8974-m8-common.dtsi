@@ -563,7 +563,7 @@
 	qcom,min-fcc-learning-soc = <20>;
 	qcom,min-fcc-ocv-pc = <30>;
 	qcom,min-fcc-learning-samples = <5>;
-	qcom,fcc-resolution = <10>;
+	qcom,fcc-resolution = <13>;
 	qcom,shutdown-vol-criteria = <3400000>;
 	qcom,stored-batt-magic-num= <(-1)>;
 	qcom,stored-batt-soc= <(-1)>;
@@ -588,7 +588,7 @@
 	qcom,ibatterm-ma = <180>;
 	qcom,ibatsafe-ma = <1750>;
 	qcom,thermal-mitigation = <1500 700 600 225>;
-	qcom,cool-bat-decidegc = <1>;
+	qcom,cool-bat-decidegc = <0>;
 	qcom,cool-bat-mv = <4350>;
 	qcom,ibatmax-warm-ma = <1750>;
 	qcom,warm-bat-decidegc = <480>;
