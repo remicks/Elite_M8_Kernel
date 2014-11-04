@@ -1,4 +1,4 @@
-ui_print("Lunar M8 Kernel...");
+ui_print("Elite M8 Kernel...");
 
 ui_print("Mount /System Folder...");
 run_program("/sbin/busybox", "mount", "/system");
