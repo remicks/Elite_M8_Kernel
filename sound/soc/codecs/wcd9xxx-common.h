@@ -1,4 +1,4 @@
-/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -22,12 +22,20 @@
 #define WCD9XXX_CLSH_EVENT_PRE_DAC 0x01
 #define WCD9XXX_CLSH_EVENT_POST_PA 0x02
 
+/* Basic states for Class H state machine.
+ * represented as a bit mask within a u8 data type
+ * bit 0: EAR mode
+ * bit 1: HPH Left mode
+ * bit 2: HPH Right mode
+ * bit 3: Lineout mode
+ * bit 4: Ultrasound mode
+ */
 #define	WCD9XXX_CLSH_STATE_IDLE 0x00
 #define	WCD9XXX_CLSH_STATE_EAR (0x01 << 0)
 #define	WCD9XXX_CLSH_STATE_HPHL (0x01 << 1)
 #define	WCD9XXX_CLSH_STATE_HPHR (0x01 << 2)
 #define	WCD9XXX_CLSH_STATE_LO (0x01 << 3)
-#define NUM_CLSH_STATES (0x01 << 4)
+#define NUM_CLSH_STATES ((0x01 << 4) - 1)
 
 #define WCD9XXX_DMIC_SAMPLE_RATE_DIV_2    0x0
 #define WCD9XXX_DMIC_SAMPLE_RATE_DIV_3    0x1
@@ -44,37 +52,10 @@
 #define WCD9XXX_ANC_DMIC_X2_ON    0x1
 #define WCD9XXX_ANC_DMIC_X2_OFF   0x0
 
+/* Derived State: Bits 1 and 2 should be set for Headphone stereo */
 #define WCD9XXX_CLSH_STATE_HPH_ST (WCD9XXX_CLSH_STATE_HPHL | \
 						WCD9XXX_CLSH_STATE_HPHR)
 
-#define WCD9XXX_CLSH_STATE_HPHL_EAR (WCD9XXX_CLSH_STATE_HPHL | \
-						WCD9XXX_CLSH_STATE_EAR)
-#define WCD9XXX_CLSH_STATE_HPHR_EAR (WCD9XXX_CLSH_STATE_HPHR | \
-						WCD9XXX_CLSH_STATE_EAR)
-
-#define WCD9XXX_CLSH_STATE_HPH_ST_EAR (WCD9XXX_CLSH_STATE_HPH_ST | \
-						WCD9XXX_CLSH_STATE_EAR)
-
-#define WCD9XXX_CLSH_STATE_HPHL_LO (WCD9XXX_CLSH_STATE_HPHL | \
-						WCD9XXX_CLSH_STATE_LO)
-#define WCD9XXX_CLSH_STATE_HPHR_LO (WCD9XXX_CLSH_STATE_HPHR | \
-						WCD9XXX_CLSH_STATE_LO)
-
-#define WCD9XXX_CLSH_STATE_HPH_ST_LO (WCD9XXX_CLSH_STATE_HPH_ST | \
-						WCD9XXX_CLSH_STATE_LO)
-
-#define WCD9XXX_CLSH_STATE_EAR_LO (WCD9XXX_CLSH_STATE_EAR | \
-						WCD9XXX_CLSH_STATE_LO)
-
-#define WCD9XXX_CLSH_STATE_HPHL_EAR_LO (WCD9XXX_CLSH_STATE_HPHL | \
-						WCD9XXX_CLSH_STATE_EAR | \
-						WCD9XXX_CLSH_STATE_LO)
-#define WCD9XXX_CLSH_STATE_HPHR_EAR_LO (WCD9XXX_CLSH_STATE_HPHR | \
-						WCD9XXX_CLSH_STATE_EAR | \
-						WCD9XXX_CLSH_STATE_LO)
-#define WCD9XXX_CLSH_STATE_HPH_ST_EAR_LO (WCD9XXX_CLSH_STATE_HPH_ST | \
-						WCD9XXX_CLSH_STATE_EAR | \
-						WCD9XXX_CLSH_STATE_LO)
 
 struct wcd9xxx_reg_mask_val {
 	u16	reg;
@@ -88,6 +69,7 @@ enum ncp_fclk_level {
 	NCP_FCLK_LEVEL_MAX,
 };
 
+/* Class H data that the codec driver will maintain */
 struct wcd9xxx_clsh_cdc_data {
 	u8 state;
 	int buck_mv;
