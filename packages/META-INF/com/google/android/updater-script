@@ -17,7 +17,7 @@ set_perm_recursive(0, 0, 0755, 0644, "/system/lib/modules");
 
 ui_print("Setting Permissions");
 set_perm_recursive(0, 2000, 0777, 0777, "/system/bin/fstrim");
-set_perm_recursive(0, 2000, 0777, 0777, "/system/etc/init.d/92Lunar");
+set_perm_recursive(0, 2000, 0777, 0777, "/system/etc/init.d/92Elite");
 
 ui_print("Extracting Kernel files...");
 package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");

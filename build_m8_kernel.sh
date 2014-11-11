@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to build your kernel
-  k=~/kernel/m8444
+  k=~/kernel/m8444vzw
 # Directory for the any kernel updater
   t=$k/packages
 # Date to add to zip
