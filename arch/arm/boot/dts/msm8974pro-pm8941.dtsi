@@ -35,28 +35,30 @@
 
 &krait_pdn {
 	qcom,use-phase-switching;
+        qcom,valid-scaling-factor-versions = <0 1 1 0>;
+
 };
 
 &krait0_vreg {
-		regulator-max-microvolt = <1120000>;
+		regulator-max-microvolt = <1250000>;
 		qcom,ldo-delta-voltage = <12500>;
 		qcom,ldo-disable;
 };
 
 &krait1_vreg {
-		regulator-max-microvolt = <1120000>;
+		regulator-max-microvolt = <1250000>;
 		qcom,ldo-delta-voltage = <12500>;
 		qcom,ldo-disable;
 };
 
 &krait2_vreg {
-		regulator-max-microvolt = <1120000>;
+		regulator-max-microvolt = <1250000>;
 		qcom,ldo-delta-voltage = <12500>;
 		qcom,ldo-disable;
 };
 
 &krait3_vreg {
-		regulator-max-microvolt = <1120000>;
+		regulator-max-microvolt = <1250000>;
 		qcom,ldo-delta-voltage = <12500>;
 		qcom,ldo-disable;
 };
@@ -67,6 +69,11 @@
 
 &pm8841_s2_corner {
 	qcom,init-smps-mode = <0>;	/* Allow AUTO mode for VDD_CX. */
+};
+
+&usb3 {
+	qcom,usbin-vadc = <&pm8941_vadc>;
+	qcom,utmi-clk-rate = <24000000>;
 };
 
 &krait_regulator_pmic {
