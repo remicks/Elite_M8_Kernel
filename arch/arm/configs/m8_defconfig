@@ -668,7 +668,7 @@ CONFIG_BLK_DEV_IO_TRACE=y
 CONFIG_SCHED_TRACER=y
 
 # Tuxera exFAT need enable this configuration
-CONFIG_NLS_UTF8=y
+CONFIG_NLS_UTF8=m
 
 #
 # exFAT Filesystem
