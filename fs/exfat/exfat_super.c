@@ -1771,7 +1771,6 @@ enum {
 	Opt_err_cont,
 	Opt_err_panic,
 	Opt_err_ro,
-	Opt_htc_hack,
 	Opt_err,
 #if EXFAT_CONFIG_DISCARD
 	Opt_discard,
@@ -1793,8 +1792,6 @@ static const match_table_t exfat_tokens = {
 	{Opt_err_panic, "errors=panic"},
 	{Opt_err_ro, "errors=remount-ro"},
 #if EXFAT_CONFIG_DISCARD
-	{Opt_htc_hack, "utf8"},
-#ifdef CONFIG_EXFAT_DISCARD
 	{Opt_discard, "discard"},
 #endif
 	{Opt_err, NULL}
@@ -1890,13 +1887,7 @@ static int parse_options(char *options, int silent, int *debug,
 		case Opt_discard:
 			opts->discard = 1;
 			break;
-<<<<<<< HEAD
 #endif
-=======
-#endif /* CONFIG_EXFAT_DISCARD */
-		case Opt_htc_hack:
-			break;
->>>>>>> d32ed6e... exfat: more HTC vold mount option hacks!
 		default:
 			if (!silent) {
 				printk(KERN_ERR "[EXFAT] Unrecognized mount option %s or missing value\n", p);
