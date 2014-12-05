@@ -667,7 +667,18 @@ CONFIG_SCHED_TRACER=y
 
 # Tuxera exFAT need enable this configuration
 CONFIG_NLS_UTF8=y
+CONFIG_CIFS=m
 
+#
+# exFAT Filesystem
+#
+#   If you want enable,
+#       CONFIG_EXFAT_FS should be set to 'm' (don't set to 'y')
+#       CONFIG_EXFAT_FS should be modified with project code name to prevent conflict with other projects
+#
+CONFIG_EXFAT_FS=m
+CONFIG_EXFAT_PATH="texfat_m8wl"
+CONFIG_EXFAT_VERSION="target/htc.d/htc-3014.6.24"
 
 #
 # Security options
@@ -714,25 +725,6 @@ CONFIG_PPPOLAC=y
 CONFIG_PPPOPNS=y
 CONFIG_PPP_ASYNC=y
 CONFIG_PPP_SYNC_TTY=y
-
-# Tuxera exFAT need enable this configuration
-CONFIG_NLS_UTF8=y
-
-#
-# DOS/FAT/NT Filesystems
-#
-CONFIG_FAT_FS=y
-# CONFIG_MSDOS_FS is not set
-CONFIG_VFAT_FS=y
-CONFIG_FAT_DEFAULT_CODEPAGE=437
-CONFIG_FAT_DEFAULT_IOCHARSET="iso8859-1"
-CONFIG_NTFS_FS=y
-# CONFIG_NTFS_DEBUG is not set
-CONFIG_NTFS_RW=y
-CONFIG_EXFAT_FS=m
-CONFIG_EXFAT_DEFAULT_CODEPAGE=437
-CONFIG_EXFAT_DEFAULT_IOCHARSET="utf8"
-CONFIG_CIFS=m
 
 #VMware
 # CONFIG_VMWARE_MVP is not set
@@ -871,7 +863,7 @@ CONFIG_IOSCHED_SIO=y
 CONFIG_FAST_RESUME=y
 CONFIG_LCD_KCAL=y
 CONFIG_FORCE_FAST_CHARGE=y
-CONFIG_LOCALVERSION="-EliteLunar"
+CONFIG_LOCALVERSION="-Elite"
 CONFIG_HAVE_KERNEL_GZIP=y
 CONFIG_HAVE_KERNEL_LZMA=y
 CONFIG_HAVE_KERNEL_XZ=y
