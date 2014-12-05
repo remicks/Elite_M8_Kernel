@@ -3954,11 +3954,11 @@ static int cgroup_clear_css_refs(struct cgroup *cgrp)
 	return !failed;
 }
 
-/* Checks if all of the css_sets attached to a cgroup have a refcount of 0. */
+/* checks if all of the css_sets attached to a cgroup have a refcount of 0.
+ * Must be called with css_set_lock held */
 static int cgroup_css_sets_empty(struct cgroup *cgrp)
 {
 	struct cg_cgroup_link *link;
-	int retval = 1;
 
 	read_lock(&css_set_lock);
 	list_for_each_entry(link, &cgrp->css_sets, cgrp_link_list) {
@@ -3968,6 +3968,7 @@ static int cgroup_css_sets_empty(struct cgroup *cgrp)
 			return 0;
 		}
 	}
+
 	read_unlock(&css_set_lock);
 	return 1;
 }
