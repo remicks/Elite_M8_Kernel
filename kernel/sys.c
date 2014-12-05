@@ -40,12 +40,9 @@
 #include <linux/syscore_ops.h>
 #include <linux/version.h>
 #include <linux/ctype.h>
-<<<<<<< HEAD
-=======
 #include <linux/mm.h>
 #include <linux/mempolicy.h>
 #include <linux/sched.h>
->>>>>>> 5af087b... prctl: adds PR_SET_TIMERSLACK_PID for setting timer slack of an arbitrary thread.
 
 #include <linux/compat.h>
 #include <linux/syscalls.h>
