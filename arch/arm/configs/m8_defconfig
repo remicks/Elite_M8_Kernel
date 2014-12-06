@@ -677,7 +677,7 @@ CONFIG_CIFS=m
 #       CONFIG_EXFAT_FS should be modified with project code name to prevent conflict with other projects
 #
 CONFIG_EXFAT_FS=m
-CONFIG_EXFAT_PATH="texfat_m8wl"
+CONFIG_EXFAT_PATH="texfat_m8"
 CONFIG_EXFAT_VERSION="target/htc.d/htc-3014.6.24"
 
 #
@@ -727,11 +727,7 @@ CONFIG_PPP_ASYNC=y
 CONFIG_PPP_SYNC_TTY=y
 
 #VMware
-# CONFIG_VMWARE_MVP is not set
-# CONFIG_VMWARE_MVP_DEBUG is not set
-
-#VMware
-# CONFIG_VMWARE_MVP is not set
+CONFIG_VMWARE_MVP=y
 # CONFIG_VMWARE_MVP_DEBUG is not set
 
 CONFIG_HTC_RPM_CMD=y
