@@ -1,4 +1,4 @@
-ui_print("Elite M8 Kernel for GPE Lollipop...");
+ui_print("Elite M8 Kernel for AOSP Lollipop...");
 
 ui_print("Mount /System Folder...");
 run_program("/sbin/busybox", "mount", "/system");
