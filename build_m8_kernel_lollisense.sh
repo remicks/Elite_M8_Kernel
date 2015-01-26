@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to build your kernel
-  k=~/kernel/m8gpe50
+  k=~/kernel/m8senselp
 # Directory for the any kernel updater
   t=$k/packages
 # Date to add to zip
@@ -39,7 +39,7 @@ find ./ -name '*~' | xargs rm
 # rm compile.log
 
 # make kernel
-make 'elite_defconfig'
+make 'm8_defconfig'
 make -j`grep 'processor' /proc/cpuinfo | wc -l` CROSS_COMPILE=$TOOLCHAIN #>> compile.log 2>&1 || exit -1
 
 # Grab modules & zImage
