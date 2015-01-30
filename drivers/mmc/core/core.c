@@ -782,11 +782,11 @@ int mmc_card_start_bkops(struct mmc_card *card)
 	unsigned long flags;
 	struct mmc_host *host = card->host;
 
-/*	
+	
 	if ((powersave_enabled == PP_EXTREMELY_POWERSAVE) && !ac_status)  {
 		pr_debug("%s: skip bkops due to extreme powersave mode\n", __func__);
 		return 0;
-	}*/
+	}
 
 	mmc_claim_host(host);
 	err = __mmc_switch(card, EXT_CSD_CMD_SET_NORMAL,
@@ -861,11 +861,11 @@ void mmc_start_bkops(struct mmc_card *card, bool from_exception)
 		return;
 	}
 
-/*	
+	
 	if ((powersave_enabled == PP_EXTREMELY_POWERSAVE) && !ac_status)  {
 		pr_debug("%s: skip bkops due to extreme powersave mode\n", __func__);
 		return;
-	}*/
+	}
 
 	mmc_rpm_hold(card->host, &card->dev);
 	
