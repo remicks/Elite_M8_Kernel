@@ -166,10 +166,6 @@ static int boost_mig_sync_thread(void *data)
 		if (ret)
 			continue;
 
-		req_freq = load_based_syncs ?
-			(dest_policy.cpuinfo.max_freq * s->task_load) / 100 :
-							src_policy.cur;
-
 		if (src_policy.cur == src_policy.cpuinfo.min_freq) {
 			pr_debug("No sync. Source CPU%d@%dKHz at min freq\n",
 				 src_cpu, src_policy.cur);
@@ -218,9 +214,6 @@ static int boost_migration_notify(struct notifier_block *nb,
 	struct cpu_sync *s = &per_cpu(sync_info, dest_cpu);
 
 	if (!cpuboost_enable) return NOTIFY_OK;
-
-	if (!load_based_syncs && (mnd->src_cpu == mnd->dest_cpu))
-		return NOTIFY_OK;
 
 	if (!boost_ms)
 		return NOTIFY_OK;
