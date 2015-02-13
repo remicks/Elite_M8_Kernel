@@ -78,13 +78,6 @@
 #include <linux/android_ediagpmem.h>
 #endif
 
-#if defined(CONFIG_LCD_KCAL)
-#include <linux/module.h>
-#include "../../../drivers/video/msm/mdss/mdss_fb.h"
-#include <mach/htc_lcd_kcal.h>
-extern int update_preset_lcdc_lut(void);
-#endif
-
 #ifdef CONFIG_KEXEC_HARDBOOT
 #include <linux/memblock.h>
 #include <asm/setup.h>
